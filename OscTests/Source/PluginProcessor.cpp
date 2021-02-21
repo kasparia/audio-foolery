@@ -149,8 +149,14 @@ void OscTestsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
         buffer.clear (channelNum, 0, buffer.getNumSamples());
     }
     
+    runner += 0.01f;
+    fmSin = std::abs(std::sin(fmOscPitchValue + runner ) * oscPitchValue * fmAmountValue) + oscPitchValue;
+    
+    
+    if (runner == 10000.0f) runner = 0.0f;
+    
     gain.setGainLinear(gainValue);
-    osc.setFrequency(oscPitchValue);
+    osc.setFrequency(fmSin);
     
     juce::dsp::AudioBlock<float> audioBlock { buffer };
 

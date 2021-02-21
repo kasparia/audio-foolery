@@ -30,6 +30,8 @@ public:
 private:
     juce::Slider gainSlider;
     juce::Slider pitchSlider;
+    juce::Slider fmPitchSlider;
+    juce::Slider fmAmountSlider;
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     OscTestsAudioProcessor& audioProcessor;

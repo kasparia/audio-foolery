@@ -55,6 +55,10 @@ public:
     
     float gainValue = 0.1f;
     float oscPitchValue = 420.0f;
+    float fmOscPitchValue = 0.0f;
+    float fmSin = 0.0f;
+    float fmAmountValue = 0.0f;
+    float runner = 0.0f;
 
 private:
     juce::Slider pitchSlider;
