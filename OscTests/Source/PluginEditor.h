@@ -14,7 +14,8 @@
 //==============================================================================
 /**
 */
-class OscTestsAudioProcessorEditor  : public juce::AudioProcessorEditor
+class OscTestsAudioProcessorEditor  :   public juce::AudioProcessorEditor,
+                                        public juce::Slider::Listener
 {
 public:
     OscTestsAudioProcessorEditor (OscTestsAudioProcessor&);
@@ -23,8 +24,12 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
+    
+    void sliderValueChanged (juce::Slider* slider) override;
 
 private:
+    juce::Slider gainSlider;
+    juce::Slider pitchSlider;
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     OscTestsAudioProcessor& audioProcessor;

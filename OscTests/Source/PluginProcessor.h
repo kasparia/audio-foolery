@@ -52,8 +52,12 @@ public:
     //==============================================================================
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
+    
+    float gainValue = 0.1f;
+    float oscPitchValue = 420.0f;
 
 private:
+    juce::Slider pitchSlider;
     juce::dsp::Oscillator<float> osc {
         [](float sinX) {
             return std::sin(sinX);

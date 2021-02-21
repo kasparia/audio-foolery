@@ -15,6 +15,18 @@ OscTestsAudioProcessorEditor::OscTestsAudioProcessorEditor (OscTestsAudioProcess
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
+    gainSlider.setSliderStyle( juce::Slider::SliderStyle::LinearVertical );
+    gainSlider.setRange(0.0f, 1.0f, 0.05f);
+    gainSlider.setValue(0.1f);
+    gainSlider.addListener(this);
+    addAndMakeVisible(gainSlider);
+    
+    pitchSlider.setSliderStyle( juce::Slider::SliderStyle::LinearVertical );
+    pitchSlider.setRange(0.0f, 16000.0f, 2.0f);
+    pitchSlider.setValue(420.0f);
+    pitchSlider.addListener(this);
+    addAndMakeVisible(pitchSlider);
+    
     setSize (400, 300);
 }
 
@@ -35,6 +47,14 @@ void OscTestsAudioProcessorEditor::paint (juce::Graphics& g)
 
 void OscTestsAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    gainSlider.setBounds(30, 30, 100, 100);
+    pitchSlider.setBounds(150, 30, 100, 100);
+}
+
+void OscTestsAudioProcessorEditor::sliderValueChanged (juce::Slider *slider) {
+    if (slider == &gainSlider) {
+        audioProcessor.gainValue = gainSlider.getValue();
+    } else if(slider == &pitchSlider) {
+        audioProcessor.oscPitchValue = pitchSlider.getValue();
+    }
 }

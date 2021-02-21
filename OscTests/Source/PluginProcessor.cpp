@@ -104,8 +104,7 @@ void OscTestsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     gain.prepare(spec);
     
     osc.setFrequency(420.0f);
-    
-    gain.setGainLinear(0.01f);
+
 }
 
 void OscTestsAudioProcessor::releaseResources()
@@ -149,10 +148,15 @@ void OscTestsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     for (auto channelNum = totalNumInputChannels; channelNum < totalNumOutputChannels; ++channelNum) {
         buffer.clear (channelNum, 0, buffer.getNumSamples());
     }
+    
+    gain.setGainLinear(gainValue);
+    osc.setFrequency(oscPitchValue);
+    
     juce::dsp::AudioBlock<float> audioBlock { buffer };
 
     osc.process( juce::dsp::ProcessContextReplacing<float> (audioBlock) );
     gain.process( juce::dsp::ProcessContextReplacing<float> (audioBlock) );
+
 }
 
 //==============================================================================
