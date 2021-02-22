@@ -59,15 +59,20 @@ public:
     float fmSin = 0.0f;
     float fmAmountValue = 0.0f;
     float runner = 0.0f;
-
-private:
-    juce::Slider pitchSlider;
+    
     juce::dsp::Oscillator<float> osc {
         [](float sinX) {
             return std::sin(sinX);
         }
     };
+    
+    int lastPitch { 0 };
+    int lastMidiNote { 0 };
+
+private:
+    juce::Slider pitchSlider;
     juce::dsp::Gain<float> gain;
+
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OscTestsAudioProcessor)
 };

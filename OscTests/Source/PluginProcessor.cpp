@@ -103,7 +103,7 @@ void OscTestsAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlo
     osc.prepare(spec);
     gain.prepare(spec);
     
-    osc.setFrequency(420.0f);
+    osc.setFrequency(oscPitchValue);
 
 }
 
@@ -156,7 +156,7 @@ void OscTestsAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juc
     if (runner == 10000.0f) runner = 0.0f;
     
     gain.setGainLinear(gainValue);
-    osc.setFrequency(fmSin);
+    osc.setFrequency(oscPitchValue);
     
     juce::dsp::AudioBlock<float> audioBlock { buffer };
 

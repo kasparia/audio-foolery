@@ -11,7 +11,11 @@
 
 //==============================================================================
 OscTestsAudioProcessorEditor::OscTestsAudioProcessorEditor (OscTestsAudioProcessor& p)
-    : AudioProcessorEditor (&p), audioProcessor (p)
+    :
+        AudioProcessorEditor (&p),
+        audioProcessor (p),
+        keyboardComponent (keyboardState, juce::MidiKeyboardComponent::horizontalKeyboard),
+        startTime (juce::Time::getMillisecondCounterHiRes() * 0.001)
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -39,6 +43,9 @@ OscTestsAudioProcessorEditor::OscTestsAudioProcessorEditor (OscTestsAudioProcess
     fmAmountSlider.addListener(this);
     addAndMakeVisible(fmAmountSlider);
     
+    addAndMakeVisible (keyboardComponent);
+    keyboardState.addListener (this);
+
     setSize (640, 480);
 }
 
@@ -63,6 +70,8 @@ void OscTestsAudioProcessorEditor::resized()
     pitchSlider.setBounds(150, 30, 100, 100);
     fmPitchSlider.setBounds(250, 30, 100, 100);
     fmAmountSlider.setBounds(350, 30, 100, 100);
+    
+    keyboardComponent.setBounds (30, 300, 200, 200);
 }
 
 void OscTestsAudioProcessorEditor::sliderValueChanged (juce::Slider *slider) {
