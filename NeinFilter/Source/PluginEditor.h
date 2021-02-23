@@ -31,9 +31,10 @@ public:
 
 private:
     Slider gainKnob;
-    Slider cutoffFilterKnob;
+    Slider cutoffKnob;
     
     Label gainLabel;
+    Label cutoffLabel;
     
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

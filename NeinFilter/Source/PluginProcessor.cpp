@@ -19,9 +19,10 @@ NeinFilterAudioProcessor::NeinFilterAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), lowPassFilter(dsp::IIR::Coefficients<float>::makeLowPass(44100, 20000.0f, 0.1f))
 #endif
 {
+    NormalisableRange<float> cutoffRang (20.0f, 20000.0f);
 }
 
 NeinFilterAudioProcessor::~NeinFilterAudioProcessor()
@@ -98,6 +99,9 @@ void NeinFilterAudioProcessor::prepareToPlay (double sampleRate, int samplesPerB
     spec.sampleRate = sampleRate;
     spec.numChannels = getTotalNumOutputChannels();
     gain.prepare(spec);
+    
+    lowPassFilter.prepare(spec);
+    lowPassFilter.reset();
 }
 
 void NeinFilterAudioProcessor::releaseResources()
@@ -132,6 +136,11 @@ bool NeinFilterAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 }
 #endif
 
+void NeinFilterAudioProcessor::updateFilter()
+{
+    *lowPassFilter.state = *dsp::IIR::Coefficients<float>::makeLowPass(41000, cutoffKnobValue, 0.8f);
+}
+
 void NeinFilterAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
@@ -149,6 +158,9 @@ void NeinFilterAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     gain.setGainLinear(gainValue);
     juce::dsp::AudioBlock<float> audioBlock { buffer };
     gain.process( juce::dsp::ProcessContextReplacing<float> (audioBlock) );
+    
+    updateFilter();
+    lowPassFilter.process( juce::dsp::ProcessContextReplacing<float> (audioBlock));
 
 }
 

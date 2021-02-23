@@ -55,11 +55,17 @@ public:
     void getStateInformation (juce::MemoryBlock& destData) override;
     void setStateInformation (const void* data, int sizeInBytes) override;
     
+    void updateFilter();
+    
     float gainValue = 0.0f;
+    float cutoffKnobValue = 20000.0f;
+    int lastSampleRate = 44100;
 
 private:
     
     dsp::Gain<float> gain;
+    
+    dsp::ProcessorDuplicator<dsp::IIR::Filter <float>, dsp::IIR::Coefficients<float>> lowPassFilter;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NeinFilterAudioProcessor)
 };
