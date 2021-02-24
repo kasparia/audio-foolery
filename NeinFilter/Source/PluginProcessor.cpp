@@ -138,7 +138,7 @@ bool NeinFilterAudioProcessor::isBusesLayoutSupported (const BusesLayout& layout
 
 void NeinFilterAudioProcessor::updateFilter()
 {
-    *lowPassFilter.state = *dsp::IIR::Coefficients<float>::makeLowPass(41000, cutoffKnobValue, 0.8f);
+    *lowPassFilter.state = *dsp::IIR::Coefficients<float>::makeLowPass(41000, cutoffKnobValue, resonanceKnobValue);
 }
 
 void NeinFilterAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)

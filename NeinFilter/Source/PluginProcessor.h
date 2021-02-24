@@ -59,6 +59,7 @@ public:
     
     float gainValue = 0.0f;
     float cutoffKnobValue = 20000.0f;
+    float resonanceKnobValue = 0.8f;
     int lastSampleRate = 44100;
 
 private:

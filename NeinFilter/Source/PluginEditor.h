@@ -32,9 +32,11 @@ public:
 private:
     Slider gainKnob;
     Slider cutoffKnob;
+    Slider resonanceKnob;
     
     Label gainLabel;
     Label cutoffLabel;
+    Label resonanceLabel;
     
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.

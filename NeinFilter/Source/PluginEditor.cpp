@@ -42,6 +42,18 @@ NeinFilterAudioProcessorEditor::NeinFilterAudioProcessorEditor (NeinFilterAudioP
     cutoffLabel.attachToComponent(&cutoffKnob, false);
     cutoffLabel.setJustificationType(20);
     cutoffLabel.setText("Cutoff", dontSendNotification);
+    
+    resonanceKnob.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    resonanceKnob.setRange(0.1f, 1.0f, 0.05f);
+    resonanceKnob.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
+    resonanceKnob.setValue(0.8f);
+    resonanceKnob.addListener(this);
+    addAndMakeVisible(resonanceKnob);
+
+    addAndMakeVisible(resonanceLabel);
+    resonanceLabel.attachToComponent(&resonanceKnob, false);
+    resonanceLabel.setJustificationType(20);
+    resonanceLabel.setText("Resonance", dontSendNotification);
 }
 
 NeinFilterAudioProcessorEditor::~NeinFilterAudioProcessorEditor()
@@ -57,10 +69,12 @@ void NeinFilterAudioProcessorEditor::paint (juce::Graphics& g)
 
 void NeinFilterAudioProcessorEditor::resized()
 {
-    Rectangle <int> dimensionsG (30, 30, 90, 90);
-    Rectangle <int> dimensionsC (130, 30, 90, 90);
+    Rectangle <int> dimensionsG (20, 30, 90, 90);
+    Rectangle <int> dimensionsC (120, 30, 90, 90);
+    Rectangle <int> dimensionsR (220, 30, 90, 90);
     gainKnob.setBounds(dimensionsG);
     cutoffKnob.setBounds(dimensionsC);
+    resonanceKnob.setBounds(dimensionsR);
 }
 
 void NeinFilterAudioProcessorEditor::sliderValueChanged (Slider *slider) {
@@ -69,5 +83,8 @@ void NeinFilterAudioProcessorEditor::sliderValueChanged (Slider *slider) {
     }
     if (slider == &cutoffKnob) {
         audioProcessor.cutoffKnobValue = cutoffKnob.getValue();
+    }
+    if (slider == &resonanceKnob) {
+        audioProcessor.resonanceKnobValue = resonanceKnob.getValue();
     }
 }
