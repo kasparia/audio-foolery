@@ -17,7 +17,7 @@ NeinFilterAudioProcessorEditor::NeinFilterAudioProcessorEditor (NeinFilterAudioP
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (340, 150);
 
     gainKnob.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     gainKnob.setRange(0.0f, 1.0f, 0.01f);
