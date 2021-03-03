@@ -2,12 +2,39 @@
 //  FilterKnob.hpp
 //  NeinFilter
 //
-//  Created by Kasperi on 24/02/2021.
+//  Created by kasparia on 24/02/2021.
 //
+#pragma once
 
-#ifndef FilterKnob_hpp
-#define FilterKnob_hpp
+#include <JuceHeader.h>
+#include "PluginProcessor.h"
 
-#include <stdio.h>
+using namespace juce;
 
-#endif /* FilterKnob_hpp */
+//==============================================================================
+/**
+*/
+class FilterKnob  : public juce::AudioProcessorEditor,
+                    public juce::Slider::Listener
+{
+public:
+    NeinFilterAudioProcessorEditor (NeinFilterAudioProcessor&);
+    ~NeinFilterAudioProcessorEditor() override;
+
+    //==============================================================================
+    void paint (juce::Graphics&) override;
+    void resized() override;
+
+    void sliderValueChanged (juce::Slider* slider) override;
+
+private:
+    Slider knobSlider;
+    
+    Label knobLabel;
+    
+    // This reference is provided as a quick way for your editor to
+    // access the processor object that created it.
+    NeinFilterAudioProcessor& audioProcessor;
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NeinFilterAudioProcessorEditor)
+};
