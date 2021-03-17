@@ -4,6 +4,8 @@
               addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="GOBkNk" name="NeinFilter">
     <GROUP id="{3DD1AEB5-7E6C-E8D5-DA59-6820BA8BC089}" name="Source">
+      <FILE id="rZHOiM" name="PluginKnob.h" compile="0" resource="0" file="Source/PluginKnob.h"/>
+      <FILE id="EWDbdx" name="PluginKnob.cpp" compile="1" resource="0" file="Source/PluginKnob.cpp"/>
       <FILE id="pN4J2C" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="N7uOgk" name="PluginProcessor.h" compile="0" resource="0"

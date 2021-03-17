@@ -2,12 +2,23 @@
 //  NeinKnob.hpp
 //  NeinFilter - VST3
 //
-//  Created by Kasperi on 03/03/2021.
+//  Created by kasparia on 03/03/2021.
 //
 
-#ifndef NeinKnob_hpp
-#define NeinKnob_hpp
+#pragma once
 
-#include <stdio.h>
+#include <JuceHeader.h>
+#include "PluginProcessor.h"
 
-#endif /* NeinKnob_hpp */
+using namespace juce;
+
+class NeinKnob
+{
+public:
+    NeinKnob ();
+    ~NeinKnob ();
+
+private:
+    Slider knobElement;
+    Label knobLabel;
+};

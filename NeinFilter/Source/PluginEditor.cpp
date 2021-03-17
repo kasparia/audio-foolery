@@ -8,6 +8,7 @@
 
 #include "PluginProcessor.h"
 #include "PluginEditor.h"
+#include "PluginKnob.h"
 
 using namespace juce;
 
@@ -23,9 +24,9 @@ NeinFilterAudioProcessorEditor::NeinFilterAudioProcessorEditor (NeinFilterAudioP
     gainKnob.setRange(0.0f, 1.0f, 0.01f);
     gainKnob.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     gainKnob.addListener(this);
-    addAndMakeVisible(gainKnob);
+    //addAndMakeVisible(gainKnob);
 
-    addAndMakeVisible(gainLabel);
+    //addAndMakeVisible(gainLabel);
     gainLabel.attachToComponent(&gainKnob, false);
     gainLabel.setJustificationType(20);
     gainLabel.setText("Volume", dontSendNotification);

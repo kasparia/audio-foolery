@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "PluginKnob.h"
 
 using namespace juce;
 
@@ -37,6 +38,10 @@ private:
     Label gainLabel;
     Label cutoffLabel;
     Label resonanceLabel;
+    
+    PluginKnob pluginGain;
+    
+    //NeinKnob ccKnob;
     
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
