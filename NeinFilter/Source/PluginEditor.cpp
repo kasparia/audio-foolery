@@ -20,16 +20,18 @@ NeinFilterAudioProcessorEditor::NeinFilterAudioProcessorEditor (NeinFilterAudioP
     // editor's size to whatever you need it to be.
     setSize (340, 150);
 
-    gainKnob.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
+    /*gainKnob.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     gainKnob.setRange(0.0f, 1.0f, 0.01f);
     gainKnob.setTextBoxStyle(Slider::NoTextBox, false, 0, 0);
     gainKnob.addListener(this);
-    //addAndMakeVisible(gainKnob);
+    addAndMakeVisible(gainKnob);
 
-    //addAndMakeVisible(gainLabel);
+    addAndMakeVisible(gainLabel);
     gainLabel.attachToComponent(&gainKnob, false);
     gainLabel.setJustificationType(20);
-    gainLabel.setText("Volume", dontSendNotification);
+    gainLabel.setText("Volume", dontSendNotification);*/
+    
+    addAndMakeVisible(gainKnob);
     
     
     cutoffKnob.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
@@ -70,10 +72,10 @@ void NeinFilterAudioProcessorEditor::paint (juce::Graphics& g)
 
 void NeinFilterAudioProcessorEditor::resized()
 {
-    Rectangle <int> dimensionsG (20, 30, 90, 90);
+    Rectangle <int> dimensionsGain (20, 30, 90, 90);
     Rectangle <int> dimensionsC (120, 30, 90, 90);
     Rectangle <int> dimensionsR (220, 30, 90, 90);
-    gainKnob.setBounds(dimensionsG);
+    gainKnob.setBounds(dimensionsGain);
     cutoffKnob.setBounds(dimensionsC);
     resonanceKnob.setBounds(dimensionsR);
 }

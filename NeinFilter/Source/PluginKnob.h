@@ -18,16 +18,23 @@ using namespace juce;
 //==============================================================================
 /**
 */
-class PluginKnob
+class PluginKnob : public juce::Component
 {
 public:
+    using SliderStyle = juce::Slider::SliderStyle;
+
     PluginKnob ();
     ~PluginKnob();
+    
+    void resized() override;
+    void paint(juce::Graphics&) override;
+    Rectangle<int> getKnobBound();
 
 private:
     Slider knobSlider;
     Label knobLabel;
     String knobLabelText = "Gain";
+    //Rectangle<int> knobDimensions (20, 30, 90, 90);
     
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
