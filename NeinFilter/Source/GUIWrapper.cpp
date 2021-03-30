@@ -16,7 +16,6 @@ using namespace juce;
 GUIWrapper::GUIWrapper ()
 {
     //pluginGain.addListener(this);
-    //pluginGain.setSliderStyle(Slider::SliderStyle::RotaryVerticalDrag);
     addAndMakeVisible(pluginGain);
 }
 

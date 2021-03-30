@@ -18,7 +18,8 @@ using namespace juce;
 //==============================================================================
 /**
 */
-class PluginKnob : public juce::Component
+class PluginKnob : public juce::Component,
+                   public juce::Slider::Listener
 {
 public:
     PluginKnob ();
@@ -26,7 +27,7 @@ public:
     
     void resized() override;
     void paint(juce::Graphics&) override;
-    Rectangle<int> getKnobBound();
+    void sliderValueChanged (juce::Slider* slider) override;
 
 private:
     Slider knobSlider;
