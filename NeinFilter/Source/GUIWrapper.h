@@ -1,29 +1,29 @@
 /*
   ==============================================================================
 
-    This file contains the basic framework code for a JUCE plugin editor.
+    GUIWrapper.h
+    Created: 30 Mar 2021 11:30:15pm
+    Author:  Kasperi
 
   ==============================================================================
 */
 
 #pragma once
-
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "PluginKnob.h"
-#include "GUIWrapper.h"
 
 using namespace juce;
 
 //==============================================================================
 /**
 */
-class NeinFilterAudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                        public juce::Slider::Listener
+class GUIWrapper  : public juce::Component,
+                    public juce::Slider::Listener
 {
 public:
-    NeinFilterAudioProcessorEditor (NeinFilterAudioProcessor&);
-    ~NeinFilterAudioProcessorEditor() override;
+    GUIWrapper ();
+    ~GUIWrapper() override;
 
     //==============================================================================
     void paint (juce::Graphics&) override;
@@ -32,13 +32,20 @@ public:
     void sliderValueChanged (juce::Slider* slider) override;
 
 private:
-    int guiSizeX = 340;
-    int guiSizeY = 150;
-    GUIWrapper pluginGUI;
-
+    Slider cutoffKnob;
+    Slider resonanceKnob;
+    
+    Label gainLabel;
+    Label cutoffLabel;
+    Label resonanceLabel;
+    
+    juce::Colour pluginBackgroundColour = juce::Colour(255, 224, 153);
+    
+    PluginKnob pluginGain;
+    
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
-    NeinFilterAudioProcessor& audioProcessor;
+    //NeinFilterAudioProcessor& audioProcessor;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (NeinFilterAudioProcessorEditor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (GUIWrapper)
 };

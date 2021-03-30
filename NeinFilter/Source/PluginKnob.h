@@ -21,8 +21,6 @@ using namespace juce;
 class PluginKnob : public juce::Component
 {
 public:
-    using SliderStyle = juce::Slider::SliderStyle;
-
     PluginKnob ();
     ~PluginKnob();
     
